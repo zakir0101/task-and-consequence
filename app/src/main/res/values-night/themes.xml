@@ -1,0 +1,20 @@
+<resources>
+    <!-- Base application theme for Night Mode using Material 3 -->
+    <style name="Theme.YourAppName" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary and secondary colors for Night Theme -->
+        <item name="colorPrimary">@color/your_primary_color</item>
+        <item name="colorPrimaryVariant">@color/your_primary_dark_color</item>
+        <item name="colorOnPrimary">@color/your_on_primary_color</item>
+        <item name="colorSecondary">@color/your_secondary_color</item>
+        <item name="colorSecondaryVariant">@color/your_secondary_dark_color</item>
+        <item name="colorOnSecondary">@color/your_on_secondary_color</item>
+
+        <!-- Status bar and navigation bar colors for Night Theme -->
+        <item name="android:statusBarColor">@color/your_status_bar_color</item>
+<!--        <item name="android:navigationBarColor">@color/your_navigation_bar_color</item>-->
+
+        <!-- Customize other attributes as needed -->
+    </style>
+</resources>
+
+

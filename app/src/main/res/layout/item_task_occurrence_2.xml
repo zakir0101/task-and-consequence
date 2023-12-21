@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/item_background_2"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_marginVertical="8dp">
+
+        <TextView
+            android:id="@+id/textViewTaskName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Task Name"
+            android:paddingBottom="8dp"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium" />
+
+        <TextView
+            android:id="@+id/textViewDeadline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Deadline: Jan 01, 2023 22:00"
+            android:paddingBottom="8dp"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
+
+
+        <TextView
+            android:id="@+id/textViewTaskDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A detailed description of the task, elaborating on the specific objectives, expected outcomes, and any other relevant details that would provide a clear understanding of the task."
+            android:textColor="@color/material_on_surface_emphasis_high_type"
+            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="8dp">
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/toggleGroupStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:singleSelection="true">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonSucceed"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Succeed"
+                    style="@style/Widget.Material3.Button.OutlinedButton"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonFail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Fail"
+                    style="@style/Widget.Material3.Button.OutlinedButton"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonPending"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Pending"
+                    style="@style/Widget.Material3.Button.OutlinedButton"/>
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+<!--            <ToggleButton-->
+<!--                android:id="@+id/toggleButtonStatus"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:checked="false"-->
+<!--                android:textOff="Pending..."-->
+<!--                android:textOn="Succeed"-->
+
+<!--                />-->
+
+<!--            <ToggleButton-->
+<!--                android:id="@+id/buttonResetStatus"-->
+<!--                style="@style/Widget.Material3.Button.TextButton"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:checked="false"-->
+<!--                android:textOff="Pending"-->
+<!--                android:textOn="Fail"-->
+<!--                />-->
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:alignmentMode="alignBounds"
+            android:weightSum="6">
+
+            <TextView
+                android:id="@+id/textViewRewardPoints"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:text="Reward Points: 10"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                android:textColor="@color/material_on_surface_emphasis_high_type" />
+
+            <ImageView
+                android:id="@+id/imageViewStatusIndicator"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_weight="1"
+                android:layout_gravity="end"
+                android:src="@drawable/baseline_pending_24"
+                app:tint="?attr/colorSecondary" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

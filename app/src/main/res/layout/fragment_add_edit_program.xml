@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:padding="16dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Name Input Field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/nameInputLayout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nameEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/name_hint" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Frequency Dropdown -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/frequencyInputLayout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/frequencyDropdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/frequency_hint"
+                        android:inputType="none" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Number of Periods Input Field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/numberOfPeriodsInputLayout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/numberOfPeriodsEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/number_of_periods_hint"
+                        android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Small Punishment Dropdown -->
+                <!-- Similar implementation as Frequency Dropdown -->
+
+                <!-- Big Punishment Dropdown -->
+                <!-- Similar implementation as Frequency Dropdown -->
+
+                <!-- Small Punishment Dropdown -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/smallPunishmentInputLayout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/smallPunishmentDropdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/small_punishment_hint"
+                        android:inputType="none" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Small Punishment Description -->
+                <TextView
+                    android:id="@+id/smallPunishmentDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:padding="8dp"
+                    android:text="Small Punishment Description"
+                    android:textSize="16sp" />
+
+                <!-- Big Punishment Dropdown -->
+                <!-- Similar implementation as Small Punishment Dropdown -->
+
+                <!-- Big Punishment Dropdown -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/bigPunishmentInputLayout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/bigPunishmentDropdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/big_punishment_hint"
+                        android:inputType="none" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Big Punishment Description -->
+                <TextView
+                    android:id="@+id/bigPunishmentDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:padding="8dp"
+                    android:text="Big Punishment Description"
+                    android:textSize="16sp" />
+                <!-- Start Date Field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/startDateInputLayout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/startDateEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:hint="@string/start_date_hint" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Time Field -->
+                <!-- Similar implementation as Start Date Field -->
+                <!-- Time Field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/timeInputLayout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/timeEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:hint="@string/time_hint" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <!-- RecyclerView for Displaying Selected Tasks -->
+                <TextView
+                    android:id="@+id/task_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:padding="8dp"
+                    android:text="Tasks"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/taskErrorText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:padding="8dp"
+                    android:textColor="?attr/colorError"
+                    android:text="Tasks cannot by Empty"
+                    android:visibility="gone"
+                    android:textSize="12sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/tasksRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    tools:itemCount="3"
+
+                    tools:listitem="@layout/item_task"
+
+                    />
+<!--                <Button-->
+<!--                    android:id="@+id/removeTaskButton"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="?attr/colorError"-->
+<!--                    android:textColor="?attr/colorOnError"-->
+<!--                    android:text="@string/remove_task" />-->
+
+<!--       -->
+                <!-- Button for Adding Task -->
+                <Button
+                    android:id="@+id/btnAddTask"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/add_task" />
+
+                <!-- Button for Adding Task -->
+                <Button
+                    android:id="@+id/btnCreateTask"
+                    android:layout_width="match_parent"
+                    style="@style/Widget.Material3.FloatingActionButton.Secondary"
+
+                    android:layout_height="wrap_content"
+                    android:text="@string/create_task" />
+
+                <!-- Save and Cancel Buttons -->
+                <!-- Similar implementation as above Button -->
+                <Button
+                    android:id="@+id/saveButton"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/save" />
+
+                <!-- Cancel Button -->
+                <Button
+                    android:id="@+id/cancelButton"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cancel" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

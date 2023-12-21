@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary colors for Night Theme -->
+<!--    <color name="your_primary_color">#0D47A1</color> &lt;!&ndash; Dark Blue &ndash;&gt;-->
+    <color name="your_primary_color">#2A6CD1</color> <!-- Dark Blue -->
+    <color name="your_primary_dark_color">#0A3068</color> <!-- Even Darker Blue -->
+    <color name="your_on_primary_color">#FFFFFF</color> <!-- White -->
+
+    <!-- Secondary colors for Night Theme -->
+    <color name="your_secondary_color">#388E3C</color> <!-- Dark Green -->
+    <color name="your_secondary_dark_color">#255d27</color> <!-- Even Darker Green -->
+    <color name="your_on_secondary_color">#FFFFFF</color> <!-- White -->
+
+    <!-- Status bar and navigation bar colors for Night Theme -->
+    <color name="your_status_bar_color">#0D47A1</color> <!-- Dark Blue -->
+    <color name="your_navigation_bar_color">#388E3C</color> <!-- Dark Green -->
+
+    <color name="selectedItemBackground">#333333</color> <!-- Dark gray for selected items in night mode -->
+    <color name="unselectedItemBackground">#121212</color> <!-- Near black for unselected items in night mode -->
+    <color name="selectedItemText">#FFFFFF</color> <!-- White text for selected items in night mode -->
+    <color name="unselectedItemText">#FFFFFF</color> <!-- White text for unselected items in night mode -->
+
+    <color name="hintColor">#BDBDBD</color> <!-- A lighter gray suitable for dark backgrounds -->
+
+    <color name="lightRed">#D32F2F</color> <!-- Black text for unselected items -->
+
+</resources>

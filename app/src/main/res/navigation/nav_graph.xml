@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/programsFragment">
+
+    <fragment
+        android:id="@+id/programsFragment"
+        android:name="com.example.taskandconsequence.views.ProgramsFragment"
+        android:label="Programs" >
+        <action
+            android:id="@+id/action_programsFragment_to_addEditProgramFragment"
+            app:destination="@id/addEditProgramFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+        <action
+            android:id="@+id/action_programsFragment_to_programOccurrenceFragment"
+            app:destination="@id/programOccurrenceFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/activeProgramOccurrenceFragment"
+        android:name="com.example.taskandconsequence.views.ActiveProgramOccurrenceFragment"
+        android:label="Active Occurrences" />
+    <fragment
+        android:id="@+id/tasksFragment"
+        android:name="com.example.taskandconsequence.views.TasksFragment"
+        android:label="Tasks" >
+        <action
+            android:id="@+id/action_tasksFragment_to_addEditTaskFragment"
+            app:destination="@id/addEditTaskFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/punishmentsFragment"
+        android:name="com.example.taskandconsequence.views.PunishmentsFragment"
+        android:label="Punishments" >
+        <action
+            android:id="@+id/action_punishmentsFragment_to_addEditPunishmentFragment"
+            app:destination="@id/addEditPunishmentFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditPunishmentFragment"
+        android:name="com.example.taskandconsequence.views.addedit.AddEditPunishmentFragment"
+        android:label="AddEditPunishmentFragment" />
+    <fragment
+        android:id="@+id/addEditTaskFragment"
+        android:name="com.example.taskandconsequence.views.addedit.AddEditTaskFragment"
+        android:label="AddEditTaskFragment" />
+    <fragment
+        android:id="@+id/addEditProgramFragment"
+        android:name="com.example.taskandconsequence.views.addedit.AddEditProgramFragment"
+        android:label="AddEditProgramFragment" >
+        <action
+            android:id="@+id/action_addEditProgramFragment_to_tasksFragment"
+            app:destination="@id/tasksFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+        <action
+            android:id="@+id/action_addEditProgramFragment_to_addEditTaskFragment"
+            app:destination="@id/addEditTaskFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/programOccurrenceFragment"
+        android:name="com.example.taskandconsequence.views.ProgramOccurrenceFragment"
+        android:label="ProgramOccurrenceFragment" >
+        <action
+            android:id="@+id/action_programOccurrenceFragment_to_taskOccurrenceFragment"
+            app:destination="@id/taskOccurrenceFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/taskOccurrenceFragment"
+        android:name="com.example.taskandconsequence.views.TaskOccurrenceFragment"
+        android:label="TaskOccurrenceFragment" />
+</navigation>

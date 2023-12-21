@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary colors -->
+    <color name="your_primary_color">#1565C0</color> <!-- Blue -->
+    <color name="your_primary_dark_color">#0D47A1</color> <!-- Darker Blue -->
+    <color name="your_on_primary_color">#FFFFFF</color> <!-- White for text/icons on primary color -->
+
+    <!-- Secondary colors -->
+    <color name="your_secondary_color">#66BB6A</color> <!-- Green -->
+    <color name="your_secondary_dark_color">#388E3C</color> <!-- Darker Green -->
+    <color name="your_on_secondary_color">#FFFFFF</color> <!-- White for text/icons on secondary color -->
+
+    <!-- Status bar color (optional, can be same as primary or secondary) -->
+    <color name="your_status_bar_color">#1565C0</color> <!-- Blue -->
+
+    <!-- Navigation bar color (optional, can be same as primary or secondary) -->
+    <color name="your_navigation_bar_color">#66BB6A</color> <!-- Green -->
+
+    <color name="selectedItemBackground">#DDDDDD</color> <!-- Light gray for selected items -->
+    <color name="unselectedItemBackground">#FFFFFF</color> <!-- White for unselected items -->
+    <color name="selectedItemText">#000000</color> <!-- Black text for selected items -->
+    <color name="unselectedItemText">#000000</color> <!-- Black text for unselected items -->
+
+    <color name="hintColor">#9E9E9E</color> <!-- A medium gray that works well on light backgrounds -->
+
+    <color name="lightRed">#FFCDD2</color> <!-- Black text for unselected items -->
+
+</resources>

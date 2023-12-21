@@ -1,0 +1,41 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.TaskAndConsequence" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/your_primary_color</item>
+        <item name="colorPrimaryVariant">@color/your_primary_dark_color</item>
+        <item name="colorOnPrimary">@color/your_on_primary_color</item>
+
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/your_secondary_color</item>
+        <item name="colorSecondaryVariant">@color/your_secondary_dark_color</item>
+        <item name="colorOnSecondary">@color/your_on_secondary_color</item>
+
+        <!-- Status bar and navigation bar colors -->
+        <item name="android:statusBarColor">@color/your_primary_dark_color</item>
+<!--        <item name="android:navigationBarColor">@color/your_status_bar_color</item>-->
+
+        <!-- Customize other attributes as needed -->
+    </style>
+
+
+    <!-- Style for the toolbar that complements the AppTheme -->
+    <style name="AppTheme.Toolbar" parent="Widget.Material3.Toolbar.Surface">
+<!--        <item name="titleTextColor">?attr/colorOnPrimary</item>-->
+<!--        <item name="android:background">?attr/colorPrimary</item>-->
+<!--        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse</item>-->
+
+<!--        <item name="android:minHeight">?attr/actionBarSize</item>-->
+<!--        <item name="android:elevation">4dp</item>-->
+        <!-- Define navigation icon if needed -->
+<!--        <item name="navigationIcon">?attr/homeAsUpIndicator</item>-->
+        <!-- Define overflow icon if needed -->
+    </style>
+
+    <style name="AppTheme.AppBarLayout" parent="Widget.Material3.AppBarLayout">
+<!--        <item name="android:background">?attr/colorPrimaryContainer</item>-->
+        <!-- You can add more styling attributes if needed -->
+    </style>
+
+
+</resources>

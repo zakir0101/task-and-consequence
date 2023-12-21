@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Other style definitions -->
+
+    <!-- Define custom hint text appearance -->
+    <style name="YourHintTextAppearance" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">@color/hintColor</item>
+        <item name="android:textSize">16sp</item>
+        <!-- Add other text appearance attributes as needed -->
+    </style>
+
+    <!-- Other style definitions -->
+</resources>
