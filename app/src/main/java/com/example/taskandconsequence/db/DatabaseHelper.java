@@ -179,11 +179,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             addTaskInternal(task,db);
         }
         int numOfDays = Helper. getNumOfDays(program.getFrequency());
-        for (int i = 0; i < program.getNumberOfPeriods(); i++) {
-            Date occurrenceDate = Helper.addDays(program.getStartDate(), numOfDays * i);
-            Long programOccurrenceId = addProgramOccurrence(new ProgramOccurrence(null, program.getId(), occurrenceDate, Status.PENDING, Status.PENDING),db);
-            for (Task task : program.getTasks()) {
-                addTaskOccurrence(new TaskOccurrence(null, task.getId(), occurrenceDate, Status.PENDING,programOccurrenceId),db);
+        if(program.getProgramOccurrences() == null || program.getProgramOccurrences().size() == 0) {
+            for (int i = 0; i < program.getNumberOfPeriods(); i++) {
+                Date occurrenceDate = Helper.addDays(program.getStartDate(), numOfDays * i);
+                Long programOccurrenceId = addProgramOccurrence(new ProgramOccurrence(null, program.getId(), occurrenceDate, Status.PENDING, Status.PENDING), db);
+                for (Task task : program.getTasks()) {
+                    addTaskOccurrence(new TaskOccurrence(null, task.getId(), occurrenceDate, Status.PENDING, programOccurrenceId), db);
+                }
+            }
+        }else{
+            for (ProgramOccurrence programOccurrence : program.getProgramOccurrences()) {
+                programOccurrence.setProgramId(id);
+                Long programOccurrenceId = addProgramOccurrence(programOccurrence, db);
+
+                int index = 0;
+                for (TaskOccurrence taskOccurrence : programOccurrence.getTaskOccurrences()) {
+                    taskOccurrence.setProgramOccurrenceId(programOccurrenceId);
+                    taskOccurrence.setTaskId(program.getTasks().get(index).getId());
+                    addTaskOccurrence(taskOccurrence, db);
+                    index++;
+                }
             }
         }
         return id;
@@ -517,20 +532,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public List<ProgramOccurrence> getCurrentProgramOccurrences() {
+    public List<ProgramOccurrence> getProgramOccurrencesToday() {
         List<ProgramOccurrence> occurrences = new ArrayList<>();
         Date endDate = new Date();
         Date startDate = Helper.addDays(endDate, -1);
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String selectQuery = "SELECT * FROM " + TABLE_PROGRAM_OCCURRENCES +
-                " WHERE " + KEY_DATE + " >= ? AND " + KEY_DATE + " <= ?";
+        String selectQuery = "SELECT oc.id ,oc.program_id,oc.date ,oc.is_completed ," +
+                " oc.is_punishment_completed FROM " + TABLE_PROGRAM_OCCURRENCES + " oc " +
+                " INNER JOIN "+ TABLE_PROGRAMS + " p " +
+                                " on p.id = oc.program_id   " +
+                " WHERE oc.date >= ? AND oc.date <= ? AND p.frequency = 'daily'";
 
         Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(startDate.getTime()), String.valueOf(endDate.getTime())});
 
         if (cursor.moveToFirst()) {
             do {
                 ProgramOccurrence occurrence = getProgramOccurrenceFromCursor(cursor);
+                occurrence.setProgram(getProgram(occurrence.getProgramId()));
                 occurrences.add(occurrence);
             } while (cursor.moveToNext());
         }
@@ -538,6 +557,109 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return occurrences;
     }
+    
+    public List<ProgramOccurrence> getPendingProgramOccurrencesToday() {
+        List<ProgramOccurrence> occurrences = new ArrayList<>();
+        Date endDate = new Date();
+        Date startDate = Helper.addDays(endDate, -1);
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT oc.id ,oc.program_id,oc.date ,oc.is_completed ," +
+                " oc.is_punishment_completed FROM " + TABLE_PROGRAM_OCCURRENCES + " oc " +
+                " INNER JOIN "+ TABLE_PROGRAMS + " p " +
+                                " on p.id = oc.program_id   " +
+                " WHERE oc.is_completed = ? AND oc.date >= ? AND oc.date <= ? AND p.frequency = 'daily'";
+
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(Status.PENDING.getValue()), String.valueOf(startDate.getTime()), String.valueOf(endDate.getTime())});
+
+        if (cursor.moveToFirst()) {
+            do {
+                ProgramOccurrence occurrence = getProgramOccurrenceFromCursor(cursor);
+                occurrence.setProgram(getProgram(occurrence.getProgramId()));
+                occurrences.add(occurrence);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return occurrences;
+    }
+    public List<ProgramOccurrence> getPendingPunishmentProgramOccurrencesToday() {
+        List<ProgramOccurrence> occurrences = new ArrayList<>();
+        Date endDate = Helper.addDays(new Date(), -1) ;
+        Date startDate = Helper.addDays(endDate, -1) ;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT oc.id ,oc.program_id,oc.date ,oc.is_completed ," +
+                " oc.is_punishment_completed FROM " + TABLE_PROGRAM_OCCURRENCES + " oc " +
+                " INNER JOIN "+ TABLE_PROGRAMS + " p " +
+                                " on p.id = oc.program_id   " +
+                " WHERE oc.is_completed = ? AND oc.date >= ? AND oc.date <= ? AND p.frequency = 'daily'";
+
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(Status.PENDING_PUNISHMENT.getValue()), String.valueOf(startDate.getTime()), String.valueOf(endDate.getTime())});
+
+        if (cursor.moveToFirst()) {
+            do {
+                ProgramOccurrence occurrence = getProgramOccurrenceFromCursor(cursor);
+                occurrence.setProgram(getProgram(occurrence.getProgramId()));
+                occurrences.add(occurrence);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return occurrences;
+    }
+
+    public List<ProgramOccurrence> getProgramOccurrencesThisWeek() {
+        List<ProgramOccurrence> occurrences = new ArrayList<>();
+        Date endDate = new Date();
+        Date startDate = Helper.addDays(endDate, -7);
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT oc.id ,oc.program_id,oc.date ,oc.is_completed ," +
+                " oc.is_punishment_completed FROM " + TABLE_PROGRAM_OCCURRENCES + " oc " +
+                " INNER JOIN "+ TABLE_PROGRAMS + " p " +
+                " on p.id = oc.program_id   " +
+                " WHERE oc.date >= ? AND oc.date <= ? AND p.frequency = 'weekly'";
+
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(startDate.getTime()), String.valueOf(endDate.getTime())});
+
+        if (cursor.moveToFirst()) {
+            do {
+                ProgramOccurrence occurrence = getProgramOccurrenceFromCursor(cursor);
+                occurrence.setProgram(getProgram(occurrence.getProgramId()));
+                occurrences.add(occurrence);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return occurrences;
+        }
+
+    public List<ProgramOccurrence> getProgramOccurrencesThisMonth() {
+        List<ProgramOccurrence> occurrences = new ArrayList<>();
+        Date endDate = new Date();
+        Date startDate = Helper.addDays(endDate, -30);
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT oc.id ,oc.program_id,oc.date ,oc.is_completed ," +
+                " oc.is_punishment_completed FROM " + TABLE_PROGRAM_OCCURRENCES + " oc " +
+                " INNER JOIN "+ TABLE_PROGRAMS + " p " +
+                " on p.id = oc.program_id   " +
+                " WHERE oc.date >= ? AND oc.date <= ? AND p.frequency = 'monthly'";
+
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(startDate.getTime()), String.valueOf(endDate.getTime())});
+
+        if (cursor.moveToFirst()) {
+            do {
+                ProgramOccurrence occurrence = getProgramOccurrenceFromCursor(cursor);
+                occurrence.setProgram(getProgram(occurrence.getProgramId()));
+                occurrences.add(occurrence);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return occurrences;
+        }
 
 
     public ProgramOccurrence getProgramOccurrence(long id) {
@@ -549,7 +671,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor.moveToFirst();
 
         ProgramOccurrence occurrence = getProgramOccurrenceFromCursor(cursor);
-
+        occurrence.setProgram(getProgram(occurrence.getProgramId()));
         cursor.close();
         return occurrence;
     }

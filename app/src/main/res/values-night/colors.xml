@@ -10,6 +10,7 @@
     <color name="your_secondary_color">#388E3C</color> <!-- Dark Green -->
     <color name="your_secondary_dark_color">#255d27</color> <!-- Even Darker Green -->
     <color name="your_on_secondary_color">#FFFFFF</color> <!-- White -->
+    <color name="your_error_color">#D6817C</color> <!-- White for text/icons on secondary color -->
 
     <!-- Status bar and navigation bar colors for Night Theme -->
     <color name="your_status_bar_color">#0D47A1</color> <!-- Dark Blue -->

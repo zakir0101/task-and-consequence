@@ -70,7 +70,7 @@ public class TaskOccurrence {
         TaskOccurrence taskOccurrence = new TaskOccurrence();
         taskOccurrence.setId(jsonObject.optLong("id"));
         taskOccurrence.setTaskId(jsonObject.optLong("taskId"));
-        // Handle date conversion from string
+        taskOccurrence.setDate(new Date(jsonObject.optLong("date")));
         taskOccurrence.setStatus(Status.valueOf(jsonObject.optString("status")));
         taskOccurrence.setProgramOccurrenceId(jsonObject.optLong("programOccurrenceId"));
         return taskOccurrence;
@@ -81,7 +81,7 @@ public class TaskOccurrence {
         try {
             jsonObject.put("id", id);
             jsonObject.put("taskId", taskId);
-            // Convert date to string format
+            jsonObject.put("date", date != null ? date.getTime() : null);
             jsonObject.put("status", status.toString());
             jsonObject.put("programOccurrenceId", programOccurrenceId);
         } catch (JSONException e) {

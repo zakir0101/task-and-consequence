@@ -122,6 +122,7 @@ public class ProgramsFragment extends Fragment {
         binding.fabAddProgram.setOnClickListener(view -> {
             viewModel.editMode = false;
             setSelectionMode(false);
+            viewModel.clearProgramTasks();
             navController.navigate(R.id.action_programsFragment_to_addEditProgramFragment);
         });
     }

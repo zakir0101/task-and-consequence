@@ -8,6 +8,7 @@
         <item name="colorSecondary">@color/your_secondary_color</item>
         <item name="colorSecondaryVariant">@color/your_secondary_dark_color</item>
         <item name="colorOnSecondary">@color/your_on_secondary_color</item>
+        <item name="colorError">@color/your_error_color</item>
 
         <!-- Status bar and navigation bar colors for Night Theme -->
         <item name="android:statusBarColor">@color/your_status_bar_color</item>

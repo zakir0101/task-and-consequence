@@ -17,6 +17,8 @@ public class ProgramOccurrence {
 
     private List<TaskOccurrence> taskOccurrences;
     // Constructors, getters, and setters
+
+    private Program program;
     private Integer rewards;
     public ProgramOccurrence() {
     }
@@ -132,4 +134,12 @@ public class ProgramOccurrence {
         return programOccurrence;
     }
 
+
+    public Program getProgram() {
+        return program;
+    }
+
+    public void setProgram(Program program) {
+        this.program = program;
+    }
 }

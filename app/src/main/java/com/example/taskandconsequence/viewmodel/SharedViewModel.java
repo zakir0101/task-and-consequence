@@ -11,7 +11,6 @@ import com.example.taskandconsequence.model.ProgramOccurrence;
 import com.example.taskandconsequence.model.Punishment;
 import com.example.taskandconsequence.model.Task;
 import com.example.taskandconsequence.model.TaskOccurrence;
-import com.example.taskandconsequence.views.adapter.ProgramOccurrenceAdapter;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -124,6 +123,7 @@ public class SharedViewModel extends ViewModel {
             updateActiveProgram();
         });
     }
+
     public void updateProgramOnly(Program program) {
         executor.execute(() -> {
             int result = databaseHelper.updateProgram(program);
@@ -284,15 +284,39 @@ public class SharedViewModel extends ViewModel {
             updateActiveOccurrence();
         });
     }
+
     public void updateProgramOccurrenceOnly(ProgramOccurrence programOccurrence) {
         executor.execute(() -> {
             int result = databaseHelper.updateProgramOccurrence(programOccurrence);
         });
     }
-    //********************************************************
-    //********************************************************
 
 
+    public LiveData<List<ProgramOccurrence>> getProgramOccurrenceToday() {
+        MutableLiveData<List<ProgramOccurrence>> occurrences = new MutableLiveData<>();
+        executor.execute(() -> {
+            occurrences.postValue(databaseHelper.getProgramOccurrencesToday());
+        });
+        return occurrences;
+    }
+
+    public LiveData<List<ProgramOccurrence>> getProgramOccurrenceThisWeek() {
+        MutableLiveData<List<ProgramOccurrence>> occurrences = new MutableLiveData<>();
+        executor.execute(() -> {
+            occurrences.postValue(databaseHelper.getProgramOccurrencesThisWeek());
+        });
+        return occurrences;
+    }
+
+    public LiveData<List<ProgramOccurrence>> getProgramOccurrenceThisMonth() {
+        MutableLiveData<List<ProgramOccurrence>> occurrences = new MutableLiveData<>();
+        executor.execute(() -> {
+            occurrences.postValue(databaseHelper.getProgramOccurrencesThisMonth());
+        });
+        return occurrences;
+    }
+    //********************************************************
+    //********************************************************
 
 
     public void updateTaskOccurrence(TaskOccurrence taskOccurrence) {
@@ -305,12 +329,12 @@ public class SharedViewModel extends ViewModel {
     //******************************************************++
     //******************************************************++
 
-    public LiveData<Integer> getAllReward(){
+    public LiveData<Integer> getAllReward() {
         updateAllReward();
         return allReward;
     }
 
-    private void updateAllReward(){
+    private void updateAllReward() {
         executor.execute(() -> {
             int result = databaseHelper.getAllReward();
             allReward.postValue(result);
@@ -319,7 +343,7 @@ public class SharedViewModel extends ViewModel {
 
     public LiveData<Backup> getAllBackup() {
         MutableLiveData<Backup> allBackup = new MutableLiveData<>();
-        executor.execute(() ->  {
+        executor.execute(() -> {
             Backup backup = databaseHelper.getAllBackup();
             allBackup.postValue(backup);
         });
@@ -329,14 +353,16 @@ public class SharedViewModel extends ViewModel {
     public void deleteAllPrograms() {
         executor.execute(databaseHelper::deleteAllPrograms);
     }
+
     public void deleteAllTasks() {
         executor.execute(databaseHelper::deleteAllTasks);
     }
+
     public void deleteAllPunishments() {
         executor.execute(databaseHelper::deleteAllPunishments);
     }
 
-    public LiveData<Boolean> loadBackup(Backup backup){
+    public LiveData<Boolean> loadBackup(Backup backup) {
         MutableLiveData<Boolean> done = new MutableLiveData<>();
         executor.execute(() -> {
             databaseHelper.addBackupFile(backup);

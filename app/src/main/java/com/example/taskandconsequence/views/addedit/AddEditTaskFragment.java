@@ -109,8 +109,9 @@ public class AddEditTaskFragment extends Fragment {
                 if(!sharedViewModel.taskEditMode) {
                     sharedViewModel.addProgramTasks(task);
                 }
-                else
-                    sharedViewModel.addProgramTasks(task);
+                else {
+//                    sharedViewModel.addProgramTasks(task);
+                }
             }
             navController.navigateUp();
         }

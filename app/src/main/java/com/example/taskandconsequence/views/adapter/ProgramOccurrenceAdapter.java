@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.taskandconsequence.R;
 import com.example.taskandconsequence.model.ProgramOccurrence;
 import com.example.taskandconsequence.databinding.ItemProgramOccurrenceBinding;
-import com.example.taskandconsequence.model.ProgramOccurrence;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,10 +22,14 @@ public class ProgramOccurrenceAdapter extends RecyclerView.Adapter<ProgramOccurr
     private List<ProgramOccurrence> programOccurrences = new ArrayList<>();
     private OnItemClickListener itemClickListener;
 
+    private boolean active = false;
     // Constructor
-    public ProgramOccurrenceAdapter(OnItemClickListener itemClickListener) {
+    public ProgramOccurrenceAdapter(OnItemClickListener itemClickListener,boolean isActive) {
         this.itemClickListener = itemClickListener;
+        this.active = isActive;
     }
+
+
 
     // Interface for click listener
     public interface OnItemClickListener {
@@ -49,7 +52,7 @@ public class ProgramOccurrenceAdapter extends RecyclerView.Adapter<ProgramOccurr
     @Override
     public void onBindViewHolder(@NonNull ProgramOccurrenceViewHolder holder, int position) {
         ProgramOccurrence programOccurrence = programOccurrences.get(position);
-        holder.bind(programOccurrence, itemClickListener);
+        holder.bind(programOccurrence, itemClickListener, active);
     }
 
     @Override
@@ -67,11 +70,15 @@ public class ProgramOccurrenceAdapter extends RecyclerView.Adapter<ProgramOccurr
 
 
         // Inside the ProgramOccurrenceViewHolder class
-        void bind(ProgramOccurrence programOccurrence, OnItemClickListener clickListener) {
+        void bind(ProgramOccurrence programOccurrence, OnItemClickListener clickListener, boolean active) {
             // Formatting the date and time
             SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
-            binding.textViewStartDate.setText(dateFormat.format(programOccurrence.getDate()));
+            if (active)
+                binding.textViewStartDate.setText(programOccurrence.getProgram().getName());
+            else
+                binding.textViewStartDate.setText(dateFormat.format(programOccurrence.getDate()));
+
             binding.textViewStartTime.setText(timeFormat.format(programOccurrence.getDate()));
 
             // Setting the status text

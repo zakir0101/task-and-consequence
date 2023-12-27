@@ -48,7 +48,7 @@ public class ProgramOccurrenceFragment extends Fragment {
     }
 
     private void setupRecyclerView() {
-        adapter = new ProgramOccurrenceAdapter(this::onProgramOccurrenceClick);
+        adapter = new ProgramOccurrenceAdapter(this::onProgramOccurrenceClick,false);
         binding.recyclerViewProgramOccurrences.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerViewProgramOccurrences.setAdapter(adapter);
     }

@@ -55,6 +55,15 @@ public class AddEditProgramFragment extends Fragment {
         return binding.getRoot();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (selectedSmallPunishment != null )
+            binding.smallPunishmentDescription.setText(selectedSmallPunishment.getDescription());
+        if (selectedBigPunishment != null)
+            binding.bigPunishmentDescription.setText(selectedBigPunishment.getDescription());
+    }
+
     private void setupUI() {
         // Setup dropdowns and pickers
         setupFrequencyDropdown();
@@ -146,12 +155,17 @@ public class AddEditProgramFragment extends Fragment {
             binding.smallPunishmentDescription.setText(selectedSmallPunishment.getDescription());
         });
 
+//        if (!binding.smallPunishmentDropdown.getText().toString().isEmpty())
+//            binding.smallPunishmentDropdown.setSelection(binding.smallPunishmentDropdown.getSelectionStart(),binding.smallPunishmentDropdown.getSelectionEnd());
         // Setup Big Punishment Dropdown
         binding.bigPunishmentDropdown.setAdapter(bigAdapter);
         binding.bigPunishmentDropdown.setOnItemClickListener((parent, view, position, id) -> {
              selectedBigPunishment = (Punishment) parent.getItemAtPosition(position);
             binding.bigPunishmentDescription.setText(selectedBigPunishment.getDescription());
         });
+
+//        if (!binding.bigPunishmentDropdown.getText().toString().isEmpty())
+//            binding.bigPunishmentDropdown.setSelection(binding.bigPunishmentDropdown.getSelectionStart(),binding.bigPunishmentDropdown.getSelectionEnd());
 
         binding.bigPunishmentDropdown.setOnClickListener(v -> {
             binding.bigPunishmentDropdown.showDropDown();
@@ -270,8 +284,8 @@ public class AddEditProgramFragment extends Fragment {
         String name = binding.nameEditText.getText().toString();
         String frequency = binding.frequencyDropdown.getText().toString();
         String numberOfPeriodsString = binding.numberOfPeriodsEditText.getText().toString();
-        String smallPunishment = binding.smallPunishmentDropdown.getText().toString();
-        String bigPunishment = binding.bigPunishmentDropdown.getText().toString();
+//        String smallPunishment = binding.smallPunishmentDropdown.getText().toString();
+//        String bigPunishment = binding.bigPunishmentDropdown.getText().toString();
         String startDate = binding.startDateEditText.getText().toString();
         String startTime = binding.timeEditText.getText().toString();
         List<Task> selectedTasks = sharedViewModel.getProgramTasks().getValue();
@@ -300,14 +314,14 @@ public class AddEditProgramFragment extends Fragment {
             isValid = false;
         }
 
-        if (smallPunishment.isEmpty()) {
+        if (selectedSmallPunishment == null) {
             binding.smallPunishmentInputLayout.setError("Small Punishment cannot be empty");
             isValid = false;
         } else {
             binding.smallPunishmentInputLayout.setError(null);
         }
 
-        if (bigPunishment.isEmpty()) {
+        if (selectedBigPunishment == null) {
             binding.bigPunishmentInputLayout.setError("Big Punishment cannot be empty");
             isValid = false;
         } else {

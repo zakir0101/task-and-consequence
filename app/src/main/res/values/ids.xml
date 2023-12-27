@@ -8,4 +8,9 @@
     <item name="menu_item_export_selected" type="id"/>
     <item name="menu_item_select_all" type="id"/>
     <item name="menu_item_share_selected" type="id"/>
+    <item name="menu_item_sign_in" type="id"/>
+    <item name="menu_item_save_drive" type="id"/>
+    <item name="menu_item_load_drive" type="id"/>
+    <item name="menu_item_name" type="id"/>
+    <item name="menu_item_logout" type="id"/>
 </resources>

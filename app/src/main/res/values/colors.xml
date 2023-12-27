@@ -10,6 +10,8 @@
     <color name="your_secondary_dark_color">#388E3C</color> <!-- Darker Green -->
     <color name="your_on_secondary_color">#FFFFFF</color> <!-- White for text/icons on secondary color -->
 
+    <color name="your_error_color">#CA524B</color> <!-- White for text/icons on secondary color -->
+
     <!-- Status bar color (optional, can be same as primary or secondary) -->
     <color name="your_status_bar_color">#1565C0</color> <!-- Blue -->
 
